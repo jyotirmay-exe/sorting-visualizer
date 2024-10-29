@@ -44,3 +44,34 @@ function updateSpeed() {
     slider.value = value;
     document.getElementById("speedVal").innerText = slider.value + "ms";
 }
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function startSequence() {
+    const bars = document.querySelectorAll('.bar');
+    
+    for (let i = 0; i < size; i++) {
+        bars[i].style.backgroundColor = "#e74c3c"; 
+
+        await sleep(delay);
+
+        if (i != 0) {
+            bars[i - 1].style.backgroundColor = "#3498db"; 
+        }
+
+        for (let j = 0; j < size; j++) {
+            if (bars[j].style.backgroundColor !== "rgb(231, 76, 60)" && j !== i) {
+                bars[j].style.backgroundColor = "#f1c40f"; 
+            }
+
+            if (j != 0 && j-1 !== i) {
+                bars[j - 1].style.backgroundColor = "#3498db"; 
+            }
+            await sleep(delay);
+        }
+
+        bars[size - 1].style.backgroundColor = "#3498db"; 
+    }
+}
