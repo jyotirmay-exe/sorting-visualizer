@@ -58,4 +58,5 @@ button {
     width: 30px;
     margin-inline: 5px;
     background-color: #3498db;
+    transition: background-color ease 0.1s;
 }
