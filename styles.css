@@ -12,7 +12,13 @@ body {
 
 .controls {
     display: flex;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
+}
+
+button {
+    font-weight: 700;
+    height: 30px;
+    width: 80px;
 }
 
 .controlDiv {
