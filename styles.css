@@ -1,0 +1,46 @@
+body {
+    font-family: monospace;
+    font-size: 16px;
+}
+
+.container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls {
+    display: flex;
+    margin-bottom: 100px;
+}
+
+.controlDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-inline: 50px;
+}
+
+.main-container {
+    margin-block: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+}
+
+.bar {
+    width: 20px;
+    margin-inline: 5px;
+    background-color: blue;
+}
+
+.controlDiv div {
+    margin-bottom: 20px;
+}
