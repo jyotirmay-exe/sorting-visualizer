@@ -1,5 +1,3 @@
-window.onload = updateRange();
-
 var size = 0;
 var delay = 0;
 
@@ -10,6 +8,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
 function updateRange() {
     updateSpeed();
     updateSize();
+}
+
+function shuffle(array) {
+    let currentIndex = array.length;
+  
+    while (currentIndex != 0) {
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
 }
 
 function updateSize() {
@@ -29,6 +37,8 @@ function updateSize() {
     for (let i = 1; i <= value; i++) {
         arr.push(i * unitHeight);
     }
+
+    shuffle(arr);
 
     document.querySelector('.bars').innerHTML = "";
     for (let i = 0; i < size; i++) {
@@ -55,8 +65,6 @@ async function startSequence() {
     for (let i = 0; i < size; i++) {
         bars[i].style.backgroundColor = "#e74c3c"; 
 
-        await sleep(delay);
-
         if (i != 0) {
             bars[i - 1].style.backgroundColor = "#3498db"; 
         }
@@ -71,7 +79,6 @@ async function startSequence() {
             }
             await sleep(delay);
         }
-
-        bars[size - 1].style.backgroundColor = "#3498db"; 
+        bars[size - 1].style.backgroundColor = "#3498db";
     }
 }
