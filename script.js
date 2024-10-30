@@ -106,11 +106,18 @@ async function startSequence() {
     let sizeslider = document.querySelector(".sizeslider");
     let selector = document.getElementById('sortSelect');
     let button = document.getElementById("start");
+    let selected = selector.value;
+
     sizeslider.disabled = true;
     selector.disabled = true;
     button.disabled = true;
     
-    await selectionSort();
+    if(selected==='none') {
+        alert("Select an Algorithm to proceed..");
+    }
+    else if(selected=='select') {
+        await selectionSort();
+    }
 
     sizeslider.disabled = false;
     selector.disabled = false;
