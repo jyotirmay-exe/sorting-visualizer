@@ -71,6 +71,12 @@ function updateSpeed() {
 
 async function startSequence() {
     const bars = document.querySelectorAll('.bar');
+    let sizeslider = document.querySelector(".sizeslider");
+    let selector = document.getElementById('sortSelect');
+    let button = document.getElementById("start");
+    sizeslider.disabled = true;
+    selector.disabled = true;
+    button.disabled = true;
     for (let i = 0; i < size; i++) {
         bars[i].style.backgroundColor = "#e74c3c"; 
 
@@ -90,4 +96,7 @@ async function startSequence() {
         }
         bars[size - 1].style.backgroundColor = "#3498db";
     }
+    sizeslider.disabled = false;
+    selector.disabled = false;
+    button.disabled = false;
 }
