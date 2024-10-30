@@ -1,5 +1,12 @@
 var size = 0;
 var delay = 0;
+var arr = [];
+var bars = document.querySelectorAll('.bar');
+
+var colGreen = "#3ce77b";
+var colRed = "#e74c3c";
+var colBlue = "#3498db";
+var colYellow = "#f1c40f";
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -11,6 +18,7 @@ async function updateText() {
             ele.innerText=Math.floor(parseFloat(ele.style.height));
         });
         await sleep(10);
+        bars = document.querySelectorAll('.bar');
     }
 }
 
@@ -34,6 +42,13 @@ function shuffle(array) {
     }
 }
 
+function updateBars() {  
+    document.querySelector('.bars').innerHTML = "";
+    for (let i = 0; i < size; i++) {
+        document.querySelector('.bars').innerHTML += `<div class='bar' style="height:${arr[i]}px;">${Math.round(arr[i])}</div>`;
+    }
+}
+
 function updateSize() {
     const slider = document.querySelector(".sizeslider");
     let value = parseInt(slider.value);
@@ -47,17 +62,13 @@ function updateSize() {
     const maxHeight = 250;
     const unitHeight = maxHeight / value;
 
-    let arr = [];
+    arr = [];
     for (let i = 1; i <= value; i++) {
         arr.push(i * unitHeight);
     }
 
     shuffle(arr);
-
-    document.querySelector('.bars').innerHTML = "";
-    for (let i = 0; i < size; i++) {
-        document.querySelector('.bars').innerHTML += `<div class='bar' style="height:${arr[i]}px;">${Math.round(arr[i])}</div>`;
-    }
+    updateBars();
 }
 
 function updateSpeed() {
@@ -69,14 +80,7 @@ function updateSpeed() {
     document.getElementById("speedVal").innerText = slider.value + "ms";
 }
 
-async function startSequence() {
-    const bars = document.querySelectorAll('.bar');
-    let sizeslider = document.querySelector(".sizeslider");
-    let selector = document.getElementById('sortSelect');
-    let button = document.getElementById("start");
-    sizeslider.disabled = true;
-    selector.disabled = true;
-    button.disabled = true;
+async function colorAnimation() {
     for (let i = 0; i < size; i++) {
         bars[i].style.backgroundColor = "#e74c3c"; 
 
@@ -96,6 +100,18 @@ async function startSequence() {
         }
         bars[size - 1].style.backgroundColor = "#3498db";
     }
+}
+
+async function startSequence() {
+    let sizeslider = document.querySelector(".sizeslider");
+    let selector = document.getElementById('sortSelect');
+    let button = document.getElementById("start");
+    sizeslider.disabled = true;
+    selector.disabled = true;
+    button.disabled = true;
+    
+    await selectionSort();
+
     sizeslider.disabled = false;
     selector.disabled = false;
     button.disabled = false;
