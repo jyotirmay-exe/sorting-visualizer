@@ -1,8 +1,22 @@
 var size = 0;
 var delay = 0;
 
-document.addEventListener("DOMContentLoaded", (event) => {
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function updateText() {
+    while(true) {
+        document.querySelectorAll('.bar').forEach( (ele)=> {
+            ele.innerText=Math.floor(parseFloat(ele.style.height));
+        });
+        await sleep(10);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", async (event) => {
     updateRange();
+    await updateText();
 });
 
 function updateRange() {
@@ -42,7 +56,7 @@ function updateSize() {
 
     document.querySelector('.bars').innerHTML = "";
     for (let i = 0; i < size; i++) {
-        document.querySelector('.bars').innerHTML += `<div class='bar' style="height:${arr[i]}px;"></div>`;
+        document.querySelector('.bars').innerHTML += `<div class='bar' style="height:${arr[i]}px;">${Math.round(arr[i])}</div>`;
     }
 }
 
@@ -55,13 +69,8 @@ function updateSpeed() {
     document.getElementById("speedVal").innerText = slider.value + "ms";
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 async function startSequence() {
     const bars = document.querySelectorAll('.bar');
-    
     for (let i = 0; i < size; i++) {
         bars[i].style.backgroundColor = "#e74c3c"; 
 
@@ -69,7 +78,7 @@ async function startSequence() {
             bars[i - 1].style.backgroundColor = "#3498db"; 
         }
 
-        for (let j = 0; j < size; j++) {
+        for (let j = i; j < size; j++) {
             if (bars[j].style.backgroundColor !== "rgb(231, 76, 60)" && j !== i) {
                 bars[j].style.backgroundColor = "#f1c40f"; 
             }
