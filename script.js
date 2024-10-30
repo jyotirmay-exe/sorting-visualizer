@@ -118,6 +118,9 @@ async function startSequence() {
     else if(selected=='select') {
         await selectionSort();
     }
+    else if(selected=='bubble') {
+        await bubbleSort();
+    }
 
     sizeslider.disabled = false;
     selector.disabled = false;
