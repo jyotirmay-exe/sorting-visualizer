@@ -9,7 +9,6 @@ body {
 }
 
 .container {
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,11 +19,17 @@ body {
     margin-bottom: 50px;
 }
 
-input{
+input {
     cursor: pointer;
 }
 
+select {
+    padding: 5px;
+    font-weight: 700;
+}
+
 button {
+    border-radius: 10px;
     font-weight: 700;
     height: 30px;
     width: 80px;
