@@ -3,13 +3,66 @@ var delay = 0;
 var arr = [];
 var bars = document.querySelectorAll('.bar');
 
+var infoObj = null;
+var speeds = ["Slow", "Moderate", "Fast", "Very Fast", "Light Speed"]
+
+var stopflag = 0;
+
 var colGreen = "#3ce77b";
 var colRed = "#e74c3c";
 var colBlue = "#3498db";
 var colYellow = "#f1c40f";
 
+finishsound = new Audio("/audio/finish.mp3");
+
+function playswapsound() {
+    swapsound1 = new Audio("/audio/swap1.mp3");
+    swapsound2 = new Audio("/audio/swap2.mp3");
+    swapsound3 = new Audio("/audio/swap3.mp3")
+    swapsounds = [swapsound1, swapsound2, swapsound3];
+    swapsounds[Math.floor(Math.random() * swapsounds.length)].play();
+}
+
+function playfinishsound() {
+    finishsound.play();
+}
+
+function playclicksound() {
+    clicksound = new Audio("/audio/click.mp3");
+    clicksound.play();
+}
+
+function getHeight(i) {
+    return parseFloat(bars[i].style.height);
+}
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function updateInfo() {
+    updateSize();
+    info = document.querySelector(".info-content");
+    title = document.querySelector(".info-title");
+    select = document.getElementById('sortSelect');
+    if(select.value=="none") {
+        title.innerText = "Sorting Info";
+        info.innerHTML = "<p>Select an algorithm and adjust the size and speed to visualize the sorting process. You can click 'Start' to begin the sorting animation and 'Stop' to halt it.</p>";
+    }
+    else {
+        title.innerText = select.options[select.selectedIndex].text;
+        info.innerHTML = `<p>${infoObj[select.value].info}</p>
+                          <p>Time Complexity: ${infoObj[select.value].time}</p>
+                          <p>Space Complexity: ${infoObj[select.value].space}</p>`;
+    }
+}
+
+function showInfo() {
+    document.getElementById("infoBox").style.display="block";
+}
+
+function hideInfo() {
+    document.getElementById('infoBox').style.display="none";
 }
 
 async function updateText() {
@@ -23,6 +76,9 @@ async function updateText() {
 }
 
 document.addEventListener("DOMContentLoaded", async (event) => {
+    const response = await fetch('info.json');
+    infoObj = await response.json();
+
     updateRange();
     await updateText();
 });
@@ -53,11 +109,9 @@ function updateSize() {
     const slider = document.querySelector(".sizeslider");
     let value = parseInt(slider.value);
 
-    value = Math.round(value / 2) * 2;
-
     slider.value = value;
     size = value;
-    document.getElementById("sizeVal").innerText = slider.value;
+    document.getElementById("sizeVal").innerText = slider.value+" items";
 
     const maxHeight = 250;
     const unitHeight = maxHeight / value;
@@ -74,10 +128,9 @@ function updateSize() {
 function updateSpeed() {
     const slider = document.querySelector(".speedslider");
     let value = parseInt(slider.value);
-    value = Math.round(value / 100) * 100;
-    delay = value;
+    delay = 350/value;
     slider.value = value;
-    document.getElementById("speedVal").innerText = slider.value + "ms";
+    document.getElementById("speedVal").innerText = speeds[slider.value-1];
 }
 
 async function colorAnimation() {
@@ -102,15 +155,24 @@ async function colorAnimation() {
     }
 }
 
+function stop() {
+    stopflag = 1;
+}
+
 async function startSequence() {
+    stopflag = 0;
     let sizeslider = document.querySelector(".sizeslider");
     let selector = document.getElementById('sortSelect');
     let button = document.getElementById("start");
+    let reset = document.getElementById("reset");
+    let stop = document.getElementById("stop");
     let selected = selector.value;
 
     sizeslider.disabled = true;
     selector.disabled = true;
     button.disabled = true;
+    reset.disabled = true;
+    stop.disabled = false;
     
     if(selected==='none') {
         alert("Select an Algorithm to proceed..");
@@ -121,8 +183,13 @@ async function startSequence() {
     else if(selected=='bubble') {
         await bubbleSort();
     }
+    else if(selected=='insert') {
+        await insertionSort();
+    }
 
     sizeslider.disabled = false;
     selector.disabled = false;
     button.disabled = false;
+    reset.disabled = false;
+    stop.disabled = true;
 }
