@@ -1,0 +1,17 @@
+{
+    "select": {
+        "info": "Place the smallest element at the first position. Repeat for the rest.",
+        "time": "O(n<sup>2</sup>)",
+        "space": "O(1)"
+    },
+    "bubble": {
+        "info": "Repeatedly swap adjacent elements if they are out of order.",
+        "time": "O(n<sup>2</sup>)",
+        "space": "O(1)"
+    },
+    "insert": {
+        "info": "Insert each element into its correct position in the sorted order.",
+        "time": "O(n<sup>2</sup>)",
+        "space": "O(1)"
+    }
+}
