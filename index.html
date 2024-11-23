@@ -12,8 +12,8 @@
     <div class="container">
         <div class="controls">
             <div class="controlDiv">
-                <div>Select an Algorithm</div>
-                <select class="sortSelect" id="sortSelect">
+                <div>Select an Algorithm <span onclick="showInfo()">ℹ️</span></div>
+                <select class="sortSelect" id="sortSelect" onchange="updateInfo()">
                     <option value="none">Select...</option>
                     <option value="bubble">Bubble Sort</option>
                     <option value="insert">Insertion Sort</option>
@@ -22,26 +22,44 @@
             </div>
             <div class="controlDiv">
                 <div>Set the Size</div>
-                <input type="range" min="4" max="20" value="12" class="sizeslider" oninput="updateSize()">
+                <input type="range" min="4" max="20" value="12" class="slider sizeslider" oninput="updateSize()">
                 <div id="sizeVal"></div>
             </div>
             <div class="controlDiv">
-                <div>Set the Delay</div>
-                <input type="range" min="100" max="500" value="250" class="speedslider" oninput="updateSpeed()">
+                <div>Set the Speed</div>
+                <input type="range" min="1" max="5" value="3" class="slider speedslider" oninput="updateSpeed()">
                 <div id="speedVal"></div>
             </div>
         </div>
 
-        <button class="start" id="start" onclick="startSequence()">START</button>
-
+        <div class="buttons">
+            <button class="start" id="start" onclick="startSequence()">Start</button>
+            <button class="start" id="stop" onclick="stop()" disabled="true">Stop</button>
+            <button class="start" id="reset" onclick="updateSize()">Randomize</button>
+        </div>
+        
         <div class="main-container">
             <div class="bars"></div>
         </div>
     </div>
+    <div class="info-box" id="infoBox">
+        <div class="info-header">
+            <span class="info-title">Sorting Info</span>
+            <button class="close-btn" style="border: none;" onclick="hideInfo()">X</button>
+        </div>
+        <div class="info-content">
+            <p>Select an algorithm and adjust the size and speed to visualize the sorting process. You can click 'Start' to begin the sorting animation and 'Stop' to halt it.</p>
+        </div>
+    </div>
 
+    <div class="landscape-message">
+        Please rotate your device to landscape mode.
+    </div>
+    
     <script src="script.js"></script>
     <script src="scripts/selectionSort.js"></script>
     <script src="scripts/bubble.js"></script>
+    <script src="scripts/insertionSort.js"></script>
 </body>
 
 </html>
