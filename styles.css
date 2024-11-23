@@ -80,7 +80,7 @@ button:disabled {
 }
 
 .main-container {
-    margin-block: 100px;
+    margin-block: 50px;
     display: flex;
     flex-direction: column;
 }
@@ -140,6 +140,23 @@ button:disabled {
     font-family: monospace;
     line-height: 1.2;
 }
+
+footer {
+    text-align: center;
+    margin-top: 0px;
+    font-size: 14px;
+    color: gray;
+}
+
+footer a {
+    color: #005ec2;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
 
 @media only screen and (orientation: portrait) {
     .container {
