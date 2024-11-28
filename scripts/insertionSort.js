@@ -9,9 +9,9 @@ async function insertionSort() {
 
         while (j >= 0 && getHeight(j) > keyHeight) {
             if (stopflag) { return; }
+            bars[j].style.backgroundColor = colGreen;
+            bars[j + 1].style.backgroundColor = colYellow;
             await sleep(delay);
-            bars[j].style.backgroundColor = colYellow;
-            bars[j + 1].style.backgroundColor = colGreen;
             bars[j + 1].style.height = getHeight(j) + "px";
             playswapsound();
             bars[j].style.backgroundColor = colBlue;
