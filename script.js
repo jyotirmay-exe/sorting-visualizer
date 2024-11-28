@@ -13,13 +13,22 @@ var colRed = "#e74c3c";
 var colBlue = "#3498db";
 var colYellow = "#f1c40f";
 
+
+swapsound1 = new Audio("/audio/swap1.mp3");
+swapsound2 = new Audio("/audio/swap2.mp3");
+swapsound3 = new Audio("/audio/swap3.mp3");
+clicksound = new Audio("/audio/click.mp3");
 finishsound = new Audio("/audio/finish.mp3");
+finishsound.volume = 0.5;
 
 function playswapsound() {
     swapsound1 = new Audio("/audio/swap1.mp3");
     swapsound2 = new Audio("/audio/swap2.mp3");
-    swapsound3 = new Audio("/audio/swap3.mp3")
+    swapsound3 = new Audio("/audio/swap3.mp3");
     swapsounds = [swapsound1, swapsound2, swapsound3];
+    swapsounds.forEach((ele)=>{
+        ele.volume = 0.5;
+    });
     swapsounds[Math.floor(Math.random() * swapsounds.length)].play();
 }
 
@@ -29,6 +38,7 @@ function playfinishsound() {
 
 function playclicksound() {
     clicksound = new Audio("/audio/click.mp3");
+    clicksound.volume = 0.3;
     clicksound.play();
 }
 
