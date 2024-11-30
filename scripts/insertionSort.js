@@ -18,9 +18,9 @@ async function insertionSort() {
             bars[j + 1].style.backgroundColor = colBlue;
             j--;
         }
-        bars[j + 1].style.backgroundColor = colGreen;
+        bars[j + 1].style.backgroundColor = colRed;
         bars[j + 1].style.height = keyHeight + "px";
-        await sleep(500);
+        await sleep(delay*2);
         bars[j + 1].style.backgroundColor = colBlue;
         bars[i].style.backgroundColor = colBlue;
     }

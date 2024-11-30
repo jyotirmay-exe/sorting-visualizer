@@ -24,7 +24,7 @@ async function selectionSort() {
             playswapsound();
             bars[i].style.backgroundColor = colGreen;
             bars[smol].style.backgroundColor = colGreen;
-            await sleep(250);
+            await sleep(delay*2);
             let temp = getHeight(i);
             bars[i].style.height = getHeight(smol)+"px";
             bars[smol].style.height = temp+"px";

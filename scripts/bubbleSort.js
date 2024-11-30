@@ -11,11 +11,11 @@ async function bubbleSort() {
                 playswapsound();
                 bars[j].style.backgroundColor = colGreen;
                 bars[j+1].style.backgroundColor = colGreen;
-                await sleep(250);
+                await sleep(delay);
                 let temp = getHeight(j);
                 bars[j].style.height = getHeight(j+1)+"px";
                 bars[j+1].style.height = temp+"px";
-                await sleep(250);
+                await sleep(delay*2);
 
             }
 
