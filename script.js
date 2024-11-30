@@ -196,6 +196,9 @@ async function startSequence() {
     else if(selected=='insert') {
         await insertionSort();
     }
+    else if(selected=='merge') {
+        await startMergeSort();
+    }
 
     sizeslider.disabled = false;
     selector.disabled = false;
