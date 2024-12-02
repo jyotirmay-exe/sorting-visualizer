@@ -13,5 +13,10 @@
         "info": "Insert each element into its correct position in the sorted order.",
         "time": "O(n<sup>2</sup>)",
         "space": "O(1)"
+    },
+    "merge" : {
+        "info": "Recursively divide the array, sort the halves and merge the sorted halves.",
+        "time": "O(n logn)",
+        "space": "O(1)"
     }
 }
