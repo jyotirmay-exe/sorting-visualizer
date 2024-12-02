@@ -54,9 +54,9 @@ async function merge(start, mid, end) {
             if(k!=start && k!=end)
                 bars[k].style.backgroundColor = colYellow; 
         }
+        await sleep(delay);
         if(k!=start && k!=end)
             bars[k].style.backgroundColor = colBlue; 
-        await sleep(delay);
     }
     
     bars[start].style.backgroundColor = colBlue;
