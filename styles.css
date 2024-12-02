@@ -103,6 +103,8 @@ button:disabled {
     width: 50px;
     margin-inline: 2px;
     background-color: #3498db;
+    box-shadow: 0px -2px 5px #000;
+    border-radius: 5px 5px 0 0;
     transition: background-color ease 0.1s;
     transition: height ease-out 0.2s;
 }
@@ -111,7 +113,7 @@ button:disabled {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 200px;
+    width: 400px;
     background-color: light-dark(#fff, #202020);
     color: light-dark(#000, #fff);
     padding: 15px;
